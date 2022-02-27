@@ -10,7 +10,7 @@
       k8s:
         state: present
         defination:
-          apiVersion: apps/v1
+          api_Version: apps/v1
           kind: ReplicaSet
           metadata:
             name: webapp
