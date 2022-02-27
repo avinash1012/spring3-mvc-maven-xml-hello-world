@@ -13,7 +13,7 @@
           api_Version: apps/v1
           kind: ReplicaSet
           metadata:
-            name: webapp
+            name: java-webapp
             namespace: default
           spec:
             replicas: 2 # We'll get three identical pods
@@ -26,7 +26,7 @@
                   app: java-webapp
               spec:
                 containers:
-                - name: springapp
+                - name: spring3appjava
                   image: 020038540642.dkr.ecr.us-east-2.amazonaws.com/spring3appjava:{{ version }}
                   ports:
                   - containerport: 8080
