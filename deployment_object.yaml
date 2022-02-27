@@ -7,48 +7,47 @@
     ansible_python_interpreter: "/usr/bin/env python3"
   tasks:
     # create kubernetes replica set
-	- name: create replicaset object
-	  k8s:
-	    state: present
+        - name: create replicaset object
+          k8s:
+            state: present
             defination:
-	     apiVersion: apps/v1
-	     kind: ReplicaSet
-	     metadata:
-	        name: webapp
-		namespace: default
-	     spec:
-	       replicas: 2
-               selector:
-		  matchLabels:
+             apiVersion: apps/v1
+             kind: ReplicaSet
+             metadata:
+              name: webapp
+              namespace: default
+             spec:
+              replicas: 2 # We'll get three identical pods
+              selector:
+                matchLabels:
+                  app: java-webapp
+              template:
+                metadata:
+                  labels:
                     app: java-webapp
-		  template:
-		    metadata:
-                      labels:
-	                app: java-webapp
-	     spec:
-              containers:
-              - name: spring3appjava
-                image: 020038540642.dkr.ecr.us-east-2.amazonaws.com/spring3appjava:{{ version }}
-                ports:
-                - containerport: 8080
-              imagePullSecrets:
-              - name: us-east-2-ecr-registry
-
-
-        - name: Create a service to access spring app 
+                spec:
+                  containers:
+                  - name: springapp
+                    image: 020038540642.dkr.ecr.us-east-2.amazonaws.com/spring3appjava:{{ version }}
+                    ports:
+                    - containerport: 8080
+                  imagePullSecrets:
+                  - name: us-east-2-ecr-registry
+        - name: Create a service to access spring app
           k8s:
             state: present
             definition:
-              apiversion: v1 
-	      kind: service
-	      metadata: 
-	         name: hello-node-webapp
-	         namespace: default
-	       spec:
-	        type: NodePort
-	        ports:
-	        - port: 8080
-	          nodeport: 30003
-		  protocol: TCP
-	        selector:
-		  app: java-webapp    
+              apiversion: v1
+              kind: service
+              metadata:
+                 name: hello-node-webapp
+                 namespace: default
+               spec:
+                type: NodePort
+                ports:
+                - port: 8080
+                  nodeport: 30003
+                  protocol: TCP
+                selector:
+                  app: node-webapp
+
