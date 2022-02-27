@@ -14,7 +14,7 @@
           apiVersion: apps/v1
           kind: ReplicaSet
           metadata:
-            name: java-webapp
+            name: webapp
             namespace: default
           spec:
             replicas: 2 
@@ -27,7 +27,7 @@
                   app: java-webapp
               spec:
                 containers:
-                - name: spring3appjava
+                - name: springapp
                   image: 020038540642.dkr.ecr.us-east-2.amazonaws.com/spring3appjava:{{ version }}
                   ports:
                   - containerPort: 8080
