@@ -6,17 +6,18 @@
   vars:
     ansible_python_interpreter: "/usr/bin/env python3"
   tasks:
+  
     - name: Create replicaset object
       k8s:
         state: present
         defination:
-          api_Version: apps/v1
+          apiVersion: apps/v1
           kind: ReplicaSet
           metadata:
             name: java-webapp
             namespace: default
           spec:
-            replicas: 2 # We'll get three identical pods
+            replicas: 2 
             selector:
                 matchLabels:
                   app: java-webapp
@@ -29,15 +30,15 @@
                 - name: spring3appjava
                   image: 020038540642.dkr.ecr.us-east-2.amazonaws.com/spring3appjava:{{ version }}
                   ports:
-                  - containerport: 8080
+                  - containerPort: 8080
                 imagePullSecrets:
                 - name: us-east-2-ecr-registry
-    - name: Create a service to access spring app
+    - name: Create a service to access spring3appjava
       k8s:
         state: present
         definition:
-          apiversion: v1
-          kind: service
+          apiVersion: v1
+          kind: Service
           metadata:
             name: hello-node-webapp
             namespace: default
