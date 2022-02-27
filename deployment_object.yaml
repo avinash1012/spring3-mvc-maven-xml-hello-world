@@ -19,18 +19,6 @@
           spec:
             replicas: 2 # We'll get three identical pods
             selector:
-        - name: create replicaset object
-          k8s:
-            state: present
-            defination:
-             apiVersion: apps/v1
-             kind: ReplicaSet
-             metadata:
-              name: webapp
-               namespace: default
-             spec:
-              replicas: 2 # We'll get three identical pods
-              selector:
                 matchLabels:
                   app: java-webapp
             template:
@@ -62,3 +50,4 @@
               protocol: TCP
             selector:
               app: node-webapp
+
