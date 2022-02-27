@@ -49,5 +49,5 @@
               nodeport: 30003
               protocol: TCP
             selector:
-              app: node-webapp
+              app: java-webapp
 
