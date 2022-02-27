@@ -15,7 +15,7 @@
              kind: ReplicaSet
              metadata:
               name: webapp
-              namespace: default
+               namespace: default
              spec:
               replicas: 2 # We'll get three identical pods
               selector:
