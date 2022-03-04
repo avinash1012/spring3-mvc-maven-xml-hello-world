@@ -28,7 +28,7 @@
               spec:
                 containers:
                 - name: spring3appjava
-                  image: 020038540642.dkr.ecr.us-east-2.amazonaws.com/spring3appjava:{{ version }}
+                  image: 020038540642.dkr.ecr.us-east-2.amazonaws.com/spring3appjava:"{{ version }}"
                   ports:
                   - containerPort: 8080
                 imagePullSecrets:
