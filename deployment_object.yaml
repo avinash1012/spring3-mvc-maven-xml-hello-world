@@ -7,7 +7,7 @@
     ansible_python_interpreter: "/usr/bin/env python3"
   tasks:
   
-    - name: Create replicaset object
+    - name: create replicaset object
       k8s:
         state: present
         defination:
@@ -27,8 +27,8 @@
                   app: java-webapp
               spec:
                 containers:
-                - name: spring3appjava
-                  image: 020038540642.dkr.ecr.us-east-2.amazonaws.com/spring3appjava:"{{ version }}"
+                - name: java_app
+                  image: 020038540643.dkr.ecr.us-east-2.amazonaws.com/spring3appjava:8
                   ports:
                   - containerPort: 8080
                 imagePullSecrets:
